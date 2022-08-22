@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,39 +10,24 @@
         href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/pokeball.png">
     <script src="script.js"></script>
-    <!-- CSS only -->
-    <!-- JavaScript Bundle with Popper -->
-    <!-- CSS only -->
+
 </head>
 
-<body onload="loadPokemon()">     
-<div class="pokeWindow d-none" id="pokeWindow"> 
-    
+<body onload="loadPokemon() ,openPokedex()">
+    <div class="pokeWindow d-none" id="pokeWindow">
     </div>
-
-
-</div>
-
     <div id="title" class="title d-none">
         <h1 class="title">Pokedex</h1>
+        <input type="text" class="input-pokemon d-none" placeholder="search Pokemon..." id="search-field"
+            onkeydown="searchPokemonNames()" />
     </div>
-
-    <div id="startScreen" class="startScreen d-none">
-        <img class="startScreen-img" src="img/300px-Pokédex_logo.png" class="startScreen">
-        <button class="openPokedex" onclick="openPokedex()">Open Pokedex</button>
+    <div id="poke_container" class="poke-container d-none"></div>
+    <div id="result"></div>
+    <div id="load-container" class="load-container">
+        <div class="pokeball"></div>
     </div>
-        <input type="text" class="input-pokemon d-none"placeholder="search Pokemon..." id="search-field" onkeydown="searchPokemonNames()" />
-
-        <div id="poke_container" class="poke-container d-none"></div>
-        <div id="result" ></div>
-    </div>
-
-    </div>
-    </div>
-
-
-
 </body>
 
 </html>
