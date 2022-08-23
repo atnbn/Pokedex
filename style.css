@@ -398,31 +398,27 @@ body {
 /*Type ends here */
 
 @media (max-width:1070px) {
-
-
-
-.img-div{
-    height: 22%;
-}
-.show{
-    height: 50%;
-}
+    .img-div {
+        height: 22%;
+    }
+    .show {
+        height: 50%;
+    }
 }
 
+.load {
+    z-index: 1;
+}
 
-@media(max-width: 890px){
-    .poke-view{
+@media(max-width: 890px) {
+    .poke-view {
         width: 400px;
-        }
+    }
 
-        .close-view{
-            font-size: 30px;
-        }
+    .close-view {
+        font-size: 30px;
+    }
 }
-    
-
-
-
 
 .progress-bar {
     width: 100%;
