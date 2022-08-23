@@ -1,43 +1,57 @@
-// This funktion adds display:none to the Startscreen if the button got pressed.
-function openPokedex() {
-    setInterval(() => {
-        document.getElementById('load-container').style.display = 'none';
-        document.getElementById('poke_container').classList.add('d-flex')
-        document.getElementById('title').style = 'display:flex'
-        document.getElementById('search-field').classList.remove('d-none');
-    }, 3500);
-}
 
-function disableAll() {
-    document.getElementById('title').style = 'display:none'
-    document.getElementById('poke_container').style = 'display:none';
-}
+
+
+
 let allPokemons = [];
 let currentPokemon;
+const limit = 50;
+let offset = 0;
 
-async function loadPokemon() {
-    let url = "https://pokeapi.co/api/v2/pokemon?limit=100";
+async function initPokedex() {
+   await loadPokemons();
+    renderPokemons(allPokemons);
+    openPokedex();
+}
+
+
+async function loadPokemons() {
+    let url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
     let response = await fetch(url);
     currentPokemon = await response.json();
-    console.log(currentPokemon);
+
     for (let i = 0; i < currentPokemon.results.length; i++) {
         let allPokemon = await getUrl(currentPokemon['results'][i]['url'])
         allPokemons.push(allPokemon);
     }
-    showAllPokemon(allPokemons);
-    console.log(allPokemons)
-    renderPokemon(allPokemons)
+    offset += limit;
 }
 
-function showAllPokemon(_pokemon) {
+
+// Removes Startscreen after a short delay 
+function openPokedex() {
+    setTimeout(() => {
+        document.getElementById('load-container').style.display = 'none';
+        document.getElementById('poke_container').classList.add('d-flex')
+        document.getElementById('title').style = 'display:flex'
+        document.getElementById('search-field').classList.remove('d-none');
+    }, 4500);
 }
+
+
+window.onscroll = async function(ev) {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        await loadPokemons()
+        renderPokemons(allPokemons);
+    }
+};
+
 async function getUrl(url) {
     let response = await fetch(url);
     let pokemons = await response.json();
     return pokemons;
 }
 
-function renderPokemon(pokemons) {      // Shows Pokemon Cards 
+function renderPokemons(pokemons) {      // Shows Pokemon Cards 
     let content = document.getElementById('poke_container');
     content.innerHTML = "";
     for (let i = 0; i < pokemons.length; i++) {
@@ -71,7 +85,7 @@ function searchPokemonNames() {
     if (searchResult.length == 0) {
         // alert('No Pokemon found!');
     } else {
-        renderPokemon(searchResult);
+        renderPokemons(searchResult);
     }
     document.getElementById('result').classList.add('d-none');
 }
