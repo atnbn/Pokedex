@@ -131,8 +131,12 @@ async function openPokeInfo(id) {       // Opens Window with Informations
         <div id="show" class="show"></div>
         </div>
         `;
+
+        showAbout(pokemon);
     document.getElementById('overview' + id).classList.add(pokemon.types[0].type.name);
     document.getElementById('img-con').classList.add(pokemon.types[0].type.name);
+
+
 }
 
 // function addTypes(allPokemons) {
