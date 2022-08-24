@@ -175,8 +175,8 @@ body {
 }
 
 .poke-view {
-    height: 55%;
-    width: 35%;
+    height:75%;
+    width: 40%;
     border-radius: 8px;
     display: flex;
     position: relative;
@@ -282,11 +282,11 @@ body {
 }
 
 .show {
-    overflow: scroll;
     flex-direction: column;
     display: flex;
     align-items: center;
-    height: 70%;
+    justify-content: center;
+    height: 100%;
     font-size: 29px;
     overflow-x: auto;
 
